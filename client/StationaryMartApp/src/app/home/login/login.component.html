@@ -1,0 +1,25 @@
+<div class="jumbotron">
+<div class="container">
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="loginForm" novalidate>  
+  <div class="row">
+    <h2 class="text-info mb-4">Login</h2>
+  </div>
+  <div class="alert alert-danger col-sm-12 col-lg-4" *ngIf="error" role="alert">
+    <div class="">
+        {{errorMsg}}
+    </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-12 col-lg-4">
+        <input type="text" class="form-control userId" name="userId" ngModel placeholder="Enter your user id" required>
+      </div>
+    </div>
+    <div class="form-group  row">
+      <div class="col-sm-12  col-lg-4">
+      <input type="password" class="form-control password" name="password" ngModel placeholder="Enter your password" required>
+      </div>
+    </div>
+    <input value="Submit" type="submit" class="btn btn-primary text-white" />
+  </form>
+  </div>
+</div>

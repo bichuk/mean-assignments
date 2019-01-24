@@ -1,0 +1,33 @@
+<div class="container">
+    <table class="table mt-5">
+        <thead class="bg-primary">
+          <tr>
+            <th scope="col">#</th>            
+            <th scope="col">Order Date</th>
+            <th scope="col">Order Status</th>
+            <th scope="col">Order Status Date</th>
+            <th scope="col">Products</th>       
+            <th scope="col"></th>                               
+          </tr>
+        </thead>
+        <tbody *ngIf="orders">
+          <tr *ngFor="let order of orders; let i = index">
+            <th scope="row">{{i + 1}}</th>            
+            <td>{{order.orderDate | date:'shortDate' }}</td>
+            <td>{{order.orderStatus}}</td>
+            <td>{{order.orderStatusDate | date:'shortDate' }}</td>
+            <td>
+              <div *ngFor="let product of order.products; let j=index">
+                  <span class="mr-1">{{product.name}}(s)</span>
+                  <input type="text" name="qty" [(ngModel)]="product.quantity" size="2" class="mr-1">
+                  <button class="btn btn-primary mr-1" (click)="updateOrderItem(product, order)" [disabled]="order.orderStatus == 'Approved'">Update</button>
+                  <button class="btn btn-danger" (click)="deleteOrderItem(product, order)" [disabled]="order.orderStatus == 'Approved'">Delete</button>
+              </div>              
+            </td> 
+            <td>
+                <button class="btn btn-danger" (click)="deleteOrder(order)" [disabled]="order.orderStatus == 'Approved'">Delete Order</button>
+            </td>                       
+          </tr>      
+        </tbody>
+      </table>     
+</div>
